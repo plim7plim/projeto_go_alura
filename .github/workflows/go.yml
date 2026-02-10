@@ -28,9 +28,4 @@ jobs:
 
       - name: Test
         run: |
-          DB_HOST=localhost
-          DB_USER=root
-          DB_PASSWORD=root
-          DB_NAME=root
-          DB_PORT=5432
-          go test -v main_test.go
+          DB_HOST=localhost DB_USER=root DB_PASSWORD=root DB_NAME=root DB_PORT=5432 go test -v main_test.go
