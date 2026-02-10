@@ -3,7 +3,13 @@ name: CI
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
+permissions:
+  contents: read
+  actions: write
+  
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -29,3 +35,12 @@ jobs:
       - name: Test
         run: |
           DB_HOST=localhost DB_USER=root DB_PASSWORD=root DB_NAME=root DB_PORT=5432 go test -v main_test.go
+
+      - name: Build
+        run: go build -o app main.go
+
+      - name: Projeto compilado
+        uses: actions/upload-artifact@v4
+        with:
+          name: projeto_compilado
+          path: app
